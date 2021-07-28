@@ -1,0 +1,343 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+ul,li,ol{
+    list-style:none;
+}
+body{
+    background: #ebeef1;
+}
+.left{
+    float: left;
+    width: 219px;
+    height: 500px;
+    padding: 15px;
+    background-color: white;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    p{
+        margin-top: 15px;
+    }
+    .btns{
+        display: flex;
+        flex-wrap: wrap;
+        button{
+            width: 45%;
+            margin: 3px;
+            border: 1px grey solid;
+            background-color: #fff;
+        }
+    }
+}
+.right{
+    float: left;
+    width: 700px;
+    margin-left: 280px;
+    margin-top: 20px;
+    .header{
+        background-color: #fff;
+        box-shadow: 0 2px 4px 0 rgba(0,0,0,0.1);
+        padding: 20px;
+        border-radius: 4px;
+        margin: 0 10px;
+    }
+}
+.question{
+    .item{
+        background-color: #fff;
+        box-shadow: 0 2px 4px 0 rgba(0,0,0,0.1);
+        padding: 18px 50px 18px 20px;
+        margin: 10px;
+        .count::before{
+            content: '*';
+            color: red;
+        }
+        .title{
+            display: inline-block;
+            box-sizing: border-box;
+            width: 300px;
+            height: 38px;
+            margin-left: 2px;
+            border: 1px white solid;
+            border-left: none;
+            font-size: 15px;
+            padding: 10px 8px;
+        }
+        .title:hover{
+            border: 1px grey dashed;
+        }
+        input[type='text']{
+            border: none;
+            outline: none;
+            background-color: #ffffff00;
+            font-size: 16px;
+        }
+        input[type='radio']{
+            margin: 0 10px 0 20px;
+        }
+        .radio{
+            width: 300px;
+            margin: 8px 0 0 23px;
+            display: flex;
+            align-items: center;
+        }
+        .circle{
+            width: 20px;
+            height: 20px;
+        }
+        
+        .box{
+            padding: 0;
+            margin: 10px 0 0 20px ;
+            height: 30px;
+            width: 450px;
+            box-shadow: none;
+            border: 1px solid rgb(202, 201, 201);
+        }
+        .date{
+            width: 20px;
+            height: 20px;
+            float: right;
+            margin: 5px 15px;
+        }
+        .position{
+            width: 500px;
+            height: 150px;
+            margin: 20px 0 0 25px;
+            border: 1px grey solid;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: rgb(65, 63, 63);
+            img{
+                width: 20px;
+                height: 20px;
+                margin-right: 12px;
+            }
+        }
+        
+        .option-list{
+            margin: 5px 0 0 20px;
+            .option-item{
+                width: 400px;
+                height: 38px;
+                display: flex;
+                align-items: center;
+                .title{
+                    display: flex;
+                    height: 40px;
+                }
+            }
+            .box{
+                margin-left: 10px;
+            }
+        }
+        .btn-box{
+            margin-top: 10px;
+            margin-left: 29px;
+            // display: none;
+            button{
+                height: 30px;
+                background-color: #fff;
+                color: blue;
+                border: none;
+                margin-right: 20px;
+                cursor: pointer;
+            }
+            button:hover{
+                background-color: #ebeef1;
+            }
+        }
+        ul{
+            .textdiv{
+                margin: 0 10px 0 0;
+            }
+        }
+    }
+
+    .right-icon{
+        float: right;
+        display: none;
+        
+    }
+    .item:hover .right-icon{
+        display: inline-block;
+    }
+    .delete2{
+        width: 22px;
+        height: 22px;
+        margin-left: 5px;
+        cursor: pointer;
+        display: none;
+    }
+    .option-item:hover .delete2{
+        display: inline-block;
+    }
+    .delete , .move{
+        width: 22px;
+        height: 22px;
+        float: right;
+        margin-right: 10px;
+    }
+}
+.form-data{
+    box-sizing: border-box;
+    position: fixed;
+    top: 20px;
+    left: 990px;
+    max-height: 500px;
+    width: 370px;
+    background-color: #fff;
+    padding: 10px;
+    font-size: smaller;
+    overflow-y: scroll;
+}
+// 滚动条的隐藏
+// .form-data::-webkit-scrollbar {
+//   display: none;
+// }
+
+.cascader_box{
+    margin: 5px 0 0 30px;
+    .cascader_item{
+        border: 1px solid #d8d8d8;
+        border-radius: 2px;
+        width: 120px;
+        height: 30px;
+        background: #fff;
+        text-align: center;
+        font-size: 14px;
+        color: #aaa;
+        outline: none;
+    }
+}
+.add-cascader-choose{
+    width: 900px;
+    height: 500px;
+    background-color: #fff;
+    position: fixed;
+    top: 60px;
+    left: 240px;
+    display: none;
+    z-index: 90;
+    .add-header{
+        height: 20px;
+        padding: 15px 0 15px 35px;
+        color: rgb(51, 50, 50);
+        .close{
+            height: 30px;
+            width: 30px;
+            float: right;
+            margin-right: 20px;
+        }
+    }
+    .add-content{
+        width: 100%;
+        height: 400px;
+        background-color: #f9f9f9;
+        display: flex;
+        justify-content: center;
+        .cascader{
+            flex: 0.25;
+            border-right: 1px solid #dde5ed;
+            padding: 15px 0 0 25px;
+            color: #a1a3a5;
+            .cascader-header{
+                margin-bottom: 10px;
+            }
+            .cascader-list{
+                .input-box{
+                    position: relative;
+                    border: 1px solid #b2b3b4;
+                    padding: 3px 5px;
+                    margin-bottom: 8px;
+                    margin-right: 15px;
+                    width: 85%;
+                    height: 20px;
+                    color: #a1a3a5;
+                    font-size: small;
+                }
+                .fake-input-box{
+                    position: relative;
+                    border: 1px solid #b2b3b4;
+                    padding: 3px 5px;
+                    margin-bottom: 8px;
+                    margin-right: 15px;
+                    width: 85%;
+                    height: 20px;
+                    color: #a1a3a5;
+                    font-size: small;
+                    display: none;
+                }
+                input{
+                    color: #a1a3a5;
+                    font-size: small;
+                    padding: 3px;
+                }
+                .add-cascader-active{
+                    border: 1px #2672ff solid;
+                }
+                .add-cascader-active::after{
+                    content: "";
+                    position: absolute;
+                    right: -12px;
+                    top: 7px;
+                    z-index: 95;
+                    border: 6px solid transparent;
+                    border-left-color: #2672ff;
+                }
+                .delete3{
+                    position: absolute;
+                    right: -9px;
+                    top: -8px;
+                    width: 12px;
+                    height: 12px;
+                    z-index: 99;
+                    display: none;
+                }
+            }
+        }
+            .add-cascader{
+                border: none;
+                background-color: #f9f9f9;
+                margin-top: 10px;
+                color: #a1a3a5;
+                display: none;
+            }
+        }
+    }
+
+.bg{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(190, 190, 190, 0.384);
+    z-index: 2;
+    display: none;
+}
+// .list-box{
+//     position: relative;
+// }
+.cascader_btn{
+    float: right;
+    button{
+        width: 80px;
+        height: 30px;
+        background-color: #2672ff;
+        color: white;
+        border: none;
+        margin: 10px 20px 0 0;
+    }
+}
+// 点击添加样式
+.item-active{
+    border: 1px solid blue;
+}
+.title-active{
+    background-color: #ebeef1;
+}

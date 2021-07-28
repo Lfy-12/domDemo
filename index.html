@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表单功能</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+  <div class="container">
+      <!-- 左侧功能选项区 -->
+      <div class="left">
+          <div class="person-info">
+              <p>个人信息</p>
+              <div class="btns">
+                  <button onclick="infoFunc(event)">姓名</button>
+                  <button onclick="infoFunc(event)">手机</button>
+                  <button onclick="sexFunc()">性别</button>
+                  <button onclick="infoFunc(event)">邮箱</button>
+                  <button onclick="infoFunc(event)">微信号</button>
+                  <button onclick="infoFunc(event)">身份证号</button>
+              </div>
+          </div>
+          <div class="order-type">
+              <p>常用题型</p>
+              <div class="btns">
+                  <button onclick="onlyBlank()">单项填空</button>
+                  <button onclick="multiBlank()">多项填空</button>
+                  <button onclick="onlyChoose()">单项选择</button>
+                  <button onclick="multiChoose()">多项选择</button>
+                  <button onclick="onlySelect()">下拉选择</button>
+                  <button onclick="multiSelect()">多级下拉</button>
+              </div>
+          </div>
+      </div>
+      <!-- 右侧表单区 -->
+      <div class="right">
+          <div class="header">
+              <h3>表单标题</h3>
+              <p>感谢您能抽出几分钟时间来填写以下内容，现在我们就马上开始吧！</p>
+          </div>
+          <div class="question">
+                  
+          </div>
+          <div class="bg"></div>
+      </div>
+      <div class="form-data">[]</div>
+      
+  </div>
+
+  <!-- 引入变量 -->
+  <script src="js/variable.js"></script>
+  <script src="js/tool.js"></script>
+
+  <script src="js/common.js"></script>
+  <!-- 工具（生成随机数 + 根据id查找数组对象） -->
+  <script src="js/data.js"></script>
+  <script src="js/special.js"></script>
+
+  <script src="js/cascader.js"></script>
+
+  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+  <script src="./js/init-data.js"></script>
+</body>
+</html>

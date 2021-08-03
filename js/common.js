@@ -58,6 +58,7 @@ function common(item){
         form.removeChild(this.parentNode.parentNode);
         count = count-1;
         const countDiv = document.querySelectorAll('.count');
+        // 刷新序号
         for(let i=0;i<count-1;i++){
             countDiv[i].innerHTML = i+1;
         }

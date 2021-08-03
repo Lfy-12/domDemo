@@ -43,7 +43,6 @@ $.get(url,function(res){
     input[input.length-1].querySelector('.textInput').blur();
     lastItem.className = 'item';
     if(lastItem.querySelector('.btn-box')) lastItem.querySelector('.btn-box').style.display = 'none';
-    
 })
 
 function initItem(item,html_template,i){
@@ -60,7 +59,6 @@ function initItem(item,html_template,i){
 }
 
 function addList(item,html_template){
-
     const li = document.createElement('li');
     li.className = 'option-list';
     switch(html_template) {

@@ -24,6 +24,15 @@ function setData(item){
     data.push(temp);
     writedata();
 
+    // 删除item
+    const deleteItem = item.querySelector('.delete');
+    deleteItem.addEventListener('click',function(){
+    // 必须在里面获取item的索引值，因为数组中的删除操作会影响索引值
+    let index = data.indexOf(getObj(data,item.id));
+    data.splice(index,1);
+    writedata();
+    })
+    
     // 修改item中的标题
     const input = item.querySelector('input');
     input.addEventListener('blur',function(){
@@ -33,16 +42,7 @@ function setData(item){
         }
     })
 
-    // 删除item
-    const deleteItem = item.querySelector('.delete');
-    deleteItem.addEventListener('click',function(){
-    // 必须在里面获取item的索引值，因为数组中的删除操作会影响索引值
-    let index = data.indexOf(getObj(data,item.id));
-    data.splice(index,1);
-    writedata();
-    })
-
-    // 增加item中的小list
+    // 增加list
     if(item.querySelector('.add-option-list')){
         const addBtn = item.querySelector('.add-option-list');
         addBtn.addEventListener('click',function(){
@@ -58,6 +58,16 @@ function setData(item){
     // list
     if(item.querySelector('ul')){
         const ul = item.querySelector('ul');
+         // 删除list
+         ul.addEventListener('click',function(e){
+            if(e.target.className === 'delete2'){
+                const input = e.target.previousElementSibling.querySelector('.textInput');
+                let valueArr = getObj(data,item.id).value
+                let index = valueArr.indexOf(getObj(valueArr,input.id));
+                getObj(data,item.id).value.splice(index,1);
+                writedata();
+            }
+        })
         // 修改list中的标题
         ul.addEventListener('blur',function(e){
             if(e.target.tagName === 'INPUT'){
@@ -68,16 +78,6 @@ function setData(item){
                 }
             }
         },true)
-        // 删除list
-        ul.addEventListener('click',function(e){
-            if(e.target.className === 'delete2'){
-                const input = e.target.previousElementSibling.querySelector('.textInput');
-                let valueArr = getObj(data,item.id).value
-                let index = valueArr.indexOf(getObj(valueArr,input.id));
-                getObj(data,item.id).value.splice(index,1);
-                writedata();
-            }
-        })
     }
 
 }

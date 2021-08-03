@@ -1,8 +1,3 @@
-let multi_blank_count = 2;
-let only_choose_count = 2;
-let multi_choose_count = 2;
-let only_down_count = 2;
-
 // 所有按钮共有的功能函数
 function common(item){
     item.className = 'item';
@@ -12,21 +7,22 @@ function common(item){
     // 控制滚动条的滚动
     window.scrollTo(0,document.body.scrollHeight)
 
-    // 添加item时相应的样式
+    // 点击按钮添加item 当前新添加的item该有的高亮样式
+    // ----item
     const items = form.querySelectorAll('.item')
     for(let i=0;i<items.length;i++){
         items[i].className = 'item'
     }
     item.className += ' item-active';
-    // 清除title的title-active样式
+    // ----title：大小标题
     const titles = form.querySelectorAll('.title')
     for(let i=0;i<titles.length;i++){
         titles[i].className = 'title'
     }
-    const itemtitle = item.querySelectorAll('.title');
-    itemtitle[0].className += ' title-active';
-    itemtitle[0].querySelector('input').select();
-    // 清除底部按钮的样式，并显示当前item的底部按钮
+    const itemtitle = item.querySelector('.title');
+    itemtitle.className += ' title-active';
+    itemtitle.querySelector('input').select();
+    // ----底部按钮
     const btn_boxs = form.querySelectorAll('.btn-box');
     for(let i=0;i<btn_boxs.length;i++){
         btn_boxs[i].style.display = 'none'
@@ -34,22 +30,29 @@ function common(item){
     const btn_box = item.querySelector('.btn-box');
     if(btn_box) btn_box.style.display = 'block';
 
-    // 添加监听器：激活item样式
+    // item的点击事件
     // addEventListener第三个参数为true，处于捕获状态
     item.addEventListener('click',function(){
+        // ----item
         const items = form.querySelectorAll('.item')
         for(let i=0;i<items.length;i++){
             items[i].className = 'item'
         }
         item.className += ' item-active';
-        // 清除title的title-active样式
+        // ----title
         const titles = form.querySelectorAll('.title')
         for(let i=0;i<titles.length;i++){
             titles[i].className = 'title';
         }
+        // ----底部按钮
+        const btn_boxs = form.querySelectorAll('.btn-box');
+        for(let i=0;i<btn_boxs.length;i++){
+            btn_boxs[i].style.display = 'none';
+        }
+        if(btn_box) btn_box.style.display = 'block';
     },true)
 
-    // 添加监听器：删除item
+    // 删除item
     const deleteItem = item.querySelector('.delete');
     deleteItem.addEventListener('click',function(){
         form.removeChild(this.parentNode.parentNode);
@@ -59,22 +62,42 @@ function common(item){
             countDiv[i].innerHTML = i+1;
         }
     })
-    
-    // 添加监听器：激活title样式
-    for(let i=0;i<itemtitle.length;i++){
-        itemtitle[i].addEventListener('click',function(){
-            titleBg(itemtitle[i]);
-            titleSelectAll(itemtitle[i]);
-        },true)
-    }
-    
-    item.addEventListener('click',function(){
-        const btn_boxs = form.querySelectorAll('.btn-box');
-        for(let i=0;i<btn_boxs.length;i++){
-            btn_boxs[i].style.display = 'none';
-        }
-        if(btn_box) btn_box.style.display = 'block';
+
+    // itemtitle点击事件
+    itemtitle.addEventListener('click',function(){
+        titleBg(this);
+        titleSelectAll(this);
     })
+
+    // list的点击事件、悬浮事件
+    // 【动态为未来元素添加事件】
+    if(item.querySelector('ul')){
+        let ul = item.querySelector('ul');
+        ul.addEventListener('click',function(e){
+            // 删除图标的点击删除事件
+            if(e.target.className === 'delete2'){
+                ul.removeChild(e.target.parentNode.parentNode);
+            // 判断当前被点击的对象，动态赋予‘全选文字和文本框变色’事件
+            }else if(e.target.className === 'title'){
+                titleBg(e.target)
+                titleSelectAll(e.target);
+            }else if(e.target.parentNode.className === 'title'){
+                titleBg(e.target.parentNode)
+                titleSelectAll(e.target.parentNode);
+            }
+        })
+        // 删除图标的悬浮事件
+        ul.addEventListener('mouseover',function(e){
+            if(e.target.className === 'delete2'){
+                e.target.src = 'img/delete2-red.png';
+            }
+        })
+        ul.addEventListener('mouseout',function(e){
+            if(e.target.className === 'delete2'){
+                e.target.src = 'img/delete2.png';
+            }
+        })
+    }
 }
 
 // "添加单个选项"按钮的功能函数
@@ -130,62 +153,26 @@ function addBtn(item,html_template){
         const ul = item.querySelector('ul');
         ul.appendChild(li);
 
-        // 添加的li具有的样式及事件函数
-        // delete2小图标
-        let optionItem = li.querySelector('.option-item');
-        let delete2 = li.querySelector('.delete2');
-        delete2.addEventListener('mouseover',function(){
-            delete2.src = 'img/delete2-red.png';
-        })
-        delete2.addEventListener('mouseout',function(){
-            delete2.src = 'img/delete2.png';
-        })
-        delete2.addEventListener('click',function(){
-            ul.removeChild(this.parentNode.parentNode);
-        })
         // title
         const itemtitle = li.querySelector('.title');
         itemtitle.className += ' title-active';
         titleSelectAll(itemtitle)
-        itemtitle.addEventListener('click',function(){
-            titleBg(itemtitle)
-            titleSelectAll(itemtitle);
-        })
     })
 }
 
 
-
-// 图标delete2(减号)的功能函数
-function delete2Func(item){
-    let optionItem = item.querySelectorAll('.option-item');
-    let delete2 = item.querySelectorAll('.delete2');
-    const ul = item.querySelector('ul');
-    for(let i=0;i<optionItem.length;i++){
-        delete2[i].addEventListener('mouseover',function(){
-            delete2[i].src = 'img/delete2-red.png';
-        })
-        delete2[i].addEventListener('mouseout',function(){
-            delete2[i].src = 'img/delete2.png';
-        })
-        delete2[i].addEventListener('click',function(){
-            ul.removeChild(this.parentNode.parentNode);
-        })
-    }
-}
-
-// title样式的功能函数：文本框变色 + 全选文字(两种情况input、div)
-function titleBg(itemTitle){
+// [封装函数]title样式的功能函数：文本框变色 + 全选文字(两种情况input、div)
+function titleBg(title){
     const titles = form.querySelectorAll('.title')
     for(let i=0;i<titles.length;i++){
         titles[i].className = 'title'
     }
-    itemTitle.className += ' title-active';
+    title.className += ' title-active';
 }
-function titleSelectAll(itemTitle){
-    const textInput = itemTitle.querySelector('.textInput');
+function titleSelectAll(title){
+    const textInput = title.querySelector('.textInput');
     if(textInput) textInput.select();
-    // const textdiv = itemTitle.querySelector('.textdiv');
+    // const textdiv = title.querySelector('.textdiv');
     // if(textdiv){
     //     var selection = window.getSelection();
     //     selection.removeAllRanges();

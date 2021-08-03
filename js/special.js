@@ -15,11 +15,9 @@ function infoFunc(event){
 
     // 给item添加一个id属性,方便增删改查
     item.id = randomString();
-    // 
+    // 添加的对象摸板
     temp = {id:item.id,type:'onlyBlank',title:event.target.innerText};
     setData(item);
-
-    
 }
 
 // 性别
@@ -109,7 +107,6 @@ function multiBlank(){
     const item = document.createElement('div');
     item.innerHTML = multiBlank_html;
     common(item);
-    delete2Func(item);
     addBtn(item,'multiBlank');
 
     item.id = randomString();
@@ -150,7 +147,6 @@ function onlyChoose(){
     const item = document.createElement('div');
     item.innerHTML = onlyChoose_html;
     common(item);
-    delete2Func(item);
     addBtn(item,'onlyChoose');
 
     item.id = randomString();
@@ -191,7 +187,6 @@ function multiChoose(){
     const item = document.createElement('div');
     item.innerHTML = multiChoose_html;
     common(item);
-    delete2Func(item);
     addBtn(item,'multiChoose');
 
     item.id = randomString();
@@ -239,7 +234,6 @@ function onlySelect(){
     const item = document.createElement('div');
     item.innerHTML = onlySelect_html;
     common(item);
-    delete2Func(item);
     addBtn(item,'onlySelect');
 
     item.id = randomString();

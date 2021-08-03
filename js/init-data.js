@@ -32,12 +32,17 @@ $.get(url,function(res){
         }
     }
 
+    // 此时页面处于最底部，需要回到最顶端
+    // 消除最后一个渲染的item中的各种样式
     window.scroll(0,0);
-    let input = form.lastElementChild.querySelectorAll('.title')
+    let lastItem = form.lastElementChild;
+    let input = lastItem.querySelectorAll('.title');
     for(let i=0;i<input.length;i++){
         input[i].className = 'title';
     }
     input[input.length-1].querySelector('.textInput').blur();
+    lastItem.className = 'item';
+    if(lastItem.querySelector('.btn-box')) lastItem.querySelector('.btn-box').style.display = 'none';
     
 })
 
@@ -45,7 +50,7 @@ function initItem(item,html_template,i){
     // 渲染标题
     item.querySelector('.textInput').value = init_data[i].title;
     // 清空item中默认的子选项 渲染为初始数据中的选项
-    item.querySelector('ul').innerHTML = ''
+    item.querySelector('ul').innerHTML = '';
     getObj(data,item.id).value = [];
     for(let j=0;j<init_data[i].value.length;j++){
         // 相当于调用 添加单个选项 按钮的点击事件
@@ -103,29 +108,11 @@ function addList(item,html_template){
     const ul = item.querySelector('ul');
     ul.appendChild(li);
 
-    // 添加的li具有的样式及事件函数
-    // delete2小图标
-    let optionItem = li.querySelector('.option-item');
-    let delete2 = li.querySelector('.delete2');
-    delete2.addEventListener('mouseover',function(){
-        delete2.src = 'img/delete2-red.png';
-    })
-    delete2.addEventListener('mouseout',function(){
-        delete2.src = 'img/delete2.png';
-    })
-    delete2.addEventListener('click',function(){
-        ul.removeChild(this.parentNode.parentNode);
-    })
     // title
     const itemtitle = li.querySelector('.title');
     itemtitle.className += ' title-active';
     titleSelectAll(itemtitle)
-    itemtitle.addEventListener('click',function(){
-        titleBg(itemtitle)
-        titleSelectAll(itemtitle);
-    })
-
-
+    
     // 数据data
     // 获取最新添加的节点中的input节点
     let input  = item.querySelector('ul').lastElementChild.querySelector('.textInput');
@@ -133,21 +120,5 @@ function addList(item,html_template){
     let valueArr = getObj(data,item.id).value;
     valueArr.push({id:input.id,title:input.value});
     writedata();
-
-    // 给新添加的list绑定编辑和删除事件
-    input.addEventListener('blur',function(){
-        if(this.value !== getObj( valueArr ,input.id).title){
-            getObj( valueArr ,input.id).title = this.value;
-            writedata();
-        }
-    })
-
-    let deleteBtn  = item.querySelector('ul').lastElementChild.querySelector('.delete2');
-    deleteBtn.addEventListener('click',function(){
-        let valueArr = getObj(data,item.id).value
-        let index = valueArr.indexOf(getObj(valueArr,input.id));
-        getObj(data,item.id).value.splice(index,1);
-        writedata();
-    })
 }
 

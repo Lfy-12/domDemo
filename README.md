@@ -1,6 +1,6 @@
 效果图：
 
-![微信图片_20210928110900](C:\Users\fangyan.li\lfy_md\img\README\微信图片_20210928110900.png)
+![index](./img/index.png)
 
 
 
